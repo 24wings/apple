@@ -8,6 +8,7 @@ import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { AdminSigninPageComponent } from './pages/admin/admin-signin-page/admin-signin-page.component';
 import { AdminPageComponent } from './pages/admin/admin-page/admin-page.component';
 import { AdminHomePageComponent } from './pages/admin/admin-home-page/admin-home-page.component';
+import { AppGroupComponent } from './pages/admin/admin-home-page/app-group/app-group.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AdminHomePageComponent } from './pages/admin/admin-home-page/admin-home
     SigninPageComponent,
     AdminSigninPageComponent,
     AdminPageComponent,
-    AdminHomePageComponent
+    AdminHomePageComponent,
+    AppGroupComponent
   ],
   imports: [
     RouterModule.forRoot([
