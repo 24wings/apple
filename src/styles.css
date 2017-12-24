@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul,li,ol{
+    list-style: none;
+}
+
+.u-hidden-visually {
+    position: absolute !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+
+h1, .h1 {
+    font-size: 3em;
+}
+
+@media (min-width: 768px){
+.auth-wrapper {
+    margin: -160px 0 0 -300px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+}
+}
+
+
+.auth-wrapper {
+    margin: 0 auto;
+    max-width: 600px;
+    padding-top: 20px;
+    width: 90%;
+}
