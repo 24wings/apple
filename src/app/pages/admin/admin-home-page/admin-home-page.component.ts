@@ -11,5 +11,10 @@ export class AdminHomePageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  removeApp(id){
+     let isRemove= window.confirm('是否移除该应用?');
+     if(isRemove){
+       console.log('移除成功')
+     }
+  }
 }

@@ -1,0 +1,5 @@
+<ol class="breadcrumb">
+    <li *ngFor="let pathSeg of pathSegs;let i= index "  [class.active]="i == pathSegs.length-1" ><a [routerLink]="pathSeg.path">{{pathSeg.label}}</a></li>
+    
+  </ol>
+  

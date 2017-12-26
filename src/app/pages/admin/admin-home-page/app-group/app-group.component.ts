@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-app-group',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-group.component.css']
 })
 export class AppGroupComponent implements OnInit {
+  @Input() title: string;
 
   constructor() { }
 
