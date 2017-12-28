@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Jsonp, Http, RequestOptionsArgs, } from '@angular/http';
 import { Location } from '@angular/common';
-
+import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './api.service';
 import { CommonService } from './common.service';
 import { WechatService } from './wechat.service';
@@ -12,7 +12,16 @@ import { DbService } from './db.service';
 declare var WeixinJSBridge: any;
 @Injectable()
 export class ConfigService {
-
+  fieldsToFromGroup(fields: Field[]) {
+    let group: any = {};
+    // this.createUserFormGroup= 
+    fields.forEach(field => {
+      console.log(field)
+      group[field.key] = new FormControl(field.value || '', field.validators);
+      // filed.key
+    });
+    return new FormGroup(group);
+  }
 
 
   // 根据ip获取用户地理位置

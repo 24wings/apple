@@ -6,10 +6,11 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./field.component.css']
 })
 export class FieldComponent implements OnInit {
-  @Input() value: any;
+  @Input() field: any;
   @Input() form: FormGroup;
+  timeout: number = 4000;
   constructor() { }
-
+  get isValid() { return this.form.controls[this.field.key].valid; }
   ngOnInit() {
   }
 

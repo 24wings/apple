@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { RouterModule } from '@angular/router';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,8 @@ import { BackDirective, BgImgDirective } from './directive';
 import { TitleComponent } from './com/title/title.component';
 import { TransitionComponent } from './com/transition/transition.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImageViewerDirective } from './directive/image-viewer.directive';
+
 @NgModule({
   imports: [
 
@@ -20,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   declarations: [TitleComponent, TransitionComponent, BgImgDirective,
-    BackDirective],
+    BackDirective,
+    ImageViewerDirective],
   exports: [BrowserModule,
     RouterModule,
     HttpModule,
@@ -29,7 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TitleComponent,
     TransitionComponent,
     BgImgDirective,
-    BackDirective
+    BackDirective,
+    ImageViewerDirective
 
   ],
   providers: [ConfigService, ApiService, CommonService, DbService, WechatService,

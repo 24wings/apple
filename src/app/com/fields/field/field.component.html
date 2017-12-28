@@ -1,3 +1,20 @@
 <div [formGroup]="form">
+  <label [attr.for]="field.key">{{field.label}}</label>
+
+  <div [ngSwitch]="field.controlType">
+
+    <!-- text 输入框 -->
+    <input type="string" *ngSwitchCase="'text'" class="form-control" [formControlName]="field.key" [id]="field.key" [type]="field.type"
+      [placeholder]="field.label">
+
+
+    <select [id]="field.key" *ngSwitchCase="'select'" [formControlName]="field.key">
+      <option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+  </div>
+
+  <!-- <div class="errorMessage">{{field.label}} 必须</div> -->
+  <alert [type]="'warning'" *ngIf="!isValid" [dismissible]="field.invalid">{{field.label}} 必填</alert>
 
 </div>

@@ -1,0 +1,47 @@
+<div class="actions">
+  <!-- 工具条 -->
+
+  <ul class="nav nav-pills actions right" role="tablist">
+    <!-- 添加 商品种类按钮 -->
+    <li class="btn btn-success">
+      账单记录
+      <i class="glyphicon glyphicon-time"></i>
+    </li>
+    <!-- 批量删除管理按钮 -->
+    <li class="btn btn-primary">
+      用户记录
+      <i class="glyphicon glyphicon-user"></i>
+    </li>
+
+
+    <div class="btn-group " dropdown>
+      <button dropdownToggle type="button" class="btn drop-btn dropdown-toggle">
+        导出
+        <span class="caret"></span>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem">
+          <a class="dropdown-item" href="#">Excel</a>
+        </li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem">
+          <a class="dropdown-item" href="#">JSON</a>
+        </li>
+      </ul>
+    </div>
+  </ul>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6" (click)="drp.toggle()">起点日期</div>
+    <div class="col-xs-6">终点日期</div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-4 form-group">
+    <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
+  </div>
+
+</div>

@@ -189,3 +189,43 @@ h1,
 .tab-content {
   margin-top: 20px;
 }
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
+.font-2x {
+  font-size: 2rem;
+}
+
+.font-15x {
+  font-size: 1.5rem;
+}
+
+.nav-pills .active a {
+  background: #1385e5;
+}
+
+.nav-pills li a {
+  padding: 10px;
+}
+
+.actions {
+  /* display: -webkit-box; */
+  margin: 10px 15px;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}

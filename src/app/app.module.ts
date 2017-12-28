@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { LibModule } from './lib';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TabsModule, ModalModule, BsDropdownModule, AlertModule } from 'ngx-bootstrap'
+import { TabsModule, ModalModule, BsDropdownModule, AlertModule, BsDatepickerModule } from 'ngx-bootstrap'
 import { AppComponent } from './app.component';
 import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { AdminSigninPageComponent } from './pages/admin/admin-signin-page/admin-signin-page.component';
@@ -15,6 +15,13 @@ import { NavComponent } from './com/nav/nav.component';
 import { FruitUserManageComponent } from './pages/admin/fruit-order-system-page/fruit-user-manage/fruit-user-manage.component';
 import { TextComponent } from './com/fields/text/text.component';
 import { FieldComponent } from './com/fields/field/field.component';
+import { FormComponent } from './com/fields/form/form.component';
+import { FruitProductManageComponent } from './pages/admin/fruit-order-system-page/fruit-product-manage/fruit-product-manage.component';
+import { FruitAnalysisComponent } from './pages/admin/fruit-order-system-page/fruit-analysis/fruit-analysis.component';
+import { listLocales, defineLocale } from 'ngx-bootstrap/bs-moment';
+import { zhCn } from 'ngx-bootstrap/locale';
+defineLocale('zh-cn', zhCn);
+
 // import { FruitUserManageComponent } from './admin/fruit-order-system-page/fruit-user-manage/fruit-user-manage.component';
 
 
@@ -31,6 +38,10 @@ import { FieldComponent } from './com/fields/field/field.component';
     FruitUserManageComponent,
     TextComponent,
     FieldComponent,
+    FormComponent,
+    FruitProductManageComponent,
+    FruitAnalysisComponent,
+
     // FruitUserManageComponent
   ],
   imports: [
@@ -39,6 +50,7 @@ import { FieldComponent } from './com/fields/field/field.component';
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
     // FormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/admin/signin', pathMatch: 'full', data: {} },
@@ -48,7 +60,7 @@ import { FieldComponent } from './com/fields/field/field.component';
         children: [
           { path: '', component: AdminHomePageComponent, data: { label: '首页' } },
 
-          { path: 'fruitOrderSystem', component: FruitOrderSystemPageComponent, data: { label: '水果系统' } },
+          { path: 'fruitOrderSystem', component: FruitOrderSystemPageComponent, data: { label: '水果订购系统' } },
         ]
       }]),
     BrowserModule,

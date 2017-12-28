@@ -4,6 +4,7 @@
     <!-- 创建用户成功后 的消息提示 -->
     <div *ngFor="let alert of alerts">
       <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+
     </div>
 
     <input class="search  col-md-6 col-sm-6 col-xs-10 col-xs-offset-1" placeholder="昵称搜索" type="search" *ngIf="state==Views.List">
@@ -49,7 +50,12 @@
 </div>
 
 <div class="container" *ngIf="Views.List==state">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
+    </div>
+
+  </div>
 
   <table class="table">
     <thead>
@@ -71,6 +77,7 @@
       </tr>
     </tbody>
   </table>
+
 </div>
 
 <!-- 删除用户 -->
@@ -92,38 +99,22 @@
 </ng-template>
 <!-- 创建用户 -->
 <div *ngIf="state==Views.CreateUser">
+
   <div class="container" style="margin-top:20px;">
     <form (ngSubmit)="saveNewFruitUser()" [formGroup]="createUserFormGroup">
-      <div *ngFor="let field of createNewUserFields" class="form-row">
-        <app-field [value]="field" [form]="createUserFormGroup"></app-field>
-      </div>
-      <div class="row ">
-        <div class="col-xs-12">
-          <input type="text" class="input-lg " placeholder="用户昵称" [(ngModel)]="newFruiteSystemUser.nickname">
-
-        </div>
-
-      </div>
       <div class="row">
         <div class="col-xs-12 id">
           ID:5a3ecf8789eb541a34b370be
         </div>
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label>用户名(推荐使用手机号)</label>
-            <input type="string" class="form-control" placeholder="手机号" [(ngModel)]="newFruiteSystemUser.username">
-          </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label>密码</label>
-            <input type="password" class="form-control" placeholder="密码" [(ngModel)]="newFruiteSystemUser.password">
-          </div>
-        </div>
-        <div class="col-xs-12">
+      </div>
+      <div *ngFor="let field of createNewUserFields" class="form-row">
+        <app-field [field]="field" [form]="createUserFormGroup"></app-field>
+      </div>
 
-          <button type="submit" class="btn btn-primary" (click)="saveNewFruitUser()">保存</button>
-          <button type="reset" class="btn btn-default" (click)="resetCreateUser()">重置</button>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-primary" [disabled]="createUserFormGroup.pristine">保存</button>
+          <button type="reset" class="btn btn-default">重置</button>
         </div>
       </div>
     </form>

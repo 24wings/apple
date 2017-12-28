@@ -1,0 +1,126 @@
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation">
+    <a>商品种类:
+      <span class="badge" style="background:brown"> 22</span>
+    </a>
+  </li>
+  <ng-container *ngFor="let group of productGroups;let i = index">
+    <li role="presentation" [class.active]="selectedProductGroup==group" (click)="selectedProductGroup=group;state=Views.ListProduct"
+      *ngIf="showMoreProductGroup?true:i<3">
+      <a>{{group.label}}
+        <span class="badge">{{group.num}}</span>
+      </a>
+    </li>
+  </ng-container>
+</ul>
+
+<div class="actions">
+  <!-- 工具条 -->
+  <ul class="nav nav-pills actions left" role="tablist">
+
+    <!-- 批量删除管理按钮 -->
+    <li class="btn btn-primary">
+      推荐
+      <i class="glyphicon glyphicon-heart red"></i>
+    </li>
+    <li class="btn btn-info">
+      未推荐
+      <i class="glyphicon glyphicon-heart" style="color:#fff"></i>
+    </li>
+  </ul>
+  <ul class="nav nav-pills actions right" role="tablist">
+
+    <!-- 批量删除管理按钮 -->
+    <li class="btn btn-primary">
+      <i class="glyphicon glyphicon-wrench"></i>
+    </li>
+    <li class="btn btn-primary" style="background:#1385e5" *ngIf="!showMoreProductGroup" (click)="showMoreProductGroup=true">
+      <i class="glyphicon glyphicon-resize-full"></i>
+    </li>
+
+
+    <li class="btn btn-primary" *ngIf="showMoreProductGroup" (click)="showMoreProductGroup=false">
+      <i class="glyphicon glyphicon-resize-small"></i>
+    </li>
+
+    <!-- 添加 商品种类按钮 -->
+    <li class="btn btn-success" (click)="state=Views.CreateProductGroup">
+      <i class="glyphicon glyphicon-plus"></i>
+    </li>
+
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 text-center">
+      <div class="row">
+        产品分类: {{selectedProductGroup.label}}
+      </div>
+      <div class="row">产品数量:{{selectedProductGroup.num}} </div>
+      <!-- <div class="row">产品数量:{{selectedProductGroup.num}} </div> -->
+
+    </div>
+    <div class="col-xs-6 ">
+      <img appImageViewer src="http://res.cloudinary.com/dnf1ydl7w/image/upload/c_fit,h_90,q_80/path%2Fto%2Fimage%2Fpjqek3dlyogvg6sctm8m"
+        alt="1/1" class="img-responsive">
+    </div>
+  </div>
+</div>
+
+
+<!-- 创建商品种类 -->
+
+<div *ngIf="state==Views.CreateProductGroup">
+
+  <div class="container" style="margin-top:20px;">
+    <form (ngSubmit)="saveNewProductGroup()" [formGroup]="productFormGroup">
+      <div class="row">
+        <div class="col-xs-12 id">
+          ID:5a3ecf8789eb541a34b370be
+        </div>
+      </div>
+      <div *ngFor="let field of productGroupFields" class="form-row">
+        <app-field [field]="field" [form]="productFormGroup"></app-field>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-primary" [disabled]="productFormGroup.pristine">保存</button>
+          <button type="reset" class="btn btn-default">重置</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+<!-- 商品列表 -->
+<table class="table" *ngIf="state==Views.ListProduct">
+  <thead>
+    <tr>
+      <th></th>
+      <th>名字</th>
+      <th>价格</th>
+      <th>库存</th>
+      <th>预览</th>
+      <th>推荐状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of selectedProductGroup.children">
+      <td>
+        <i class="glyphicon glyphicon-trash" (click)="deleteProduct(product);"></i>
+      </td>
+      <td style="text-decoration: underline green;">{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.stock}}</td>
+      <td>
+        <img [src]="image" alt="" *ngFor="let image of product.images"> </td>
+      <td>
+        <i class="glyphicon glyphicon-heart red"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>

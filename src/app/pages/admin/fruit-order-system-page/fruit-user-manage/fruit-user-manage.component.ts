@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 /**用于切换视图不同状态 */
 enum Views {
@@ -21,15 +21,19 @@ interface FruiteSystemUser {
   styleUrls: ['./fruit-user-manage.component.css']
 })
 export class FruitUserManageComponent implements OnInit {
-  createNewUserFields: { key: string, label: string, value: any }[] = [
-    { key: 'username', label: '用户名', value: '1234' }
+  createNewUserFields: { key: string, label: string, value: any, controlType: string, validators?: Validators }[] = [
+    { key: 'nickname', label: '昵称', value: '1234', controlType: 'text', validators: Validators.required },
+    { key: 'username', label: '用户名', value: '', controlType: 'text', validators: Validators.required },
+    { key: 'password', label: '密码', value: '', controlType: 'text', validators: Validators.required }
   ];
-  createUserFormGroup: FormGroup = new FormGroup({ 'a': new FormControl('') });
+
+  createUserFormGroup: FormGroup //;= new FormGroup({ 'a': new FormControl('') });
   alerts: any[] = [];
   createUserDismissOnTimeout: number = 4000;
   Views = Views;
   state: Views = Views.List;
-  createSuccess
+
+
 
   selectedDeletedFruiteSystemUser: FruiteSystemUser;
   newFruiteSystemUser: FruiteSystemUser = {
@@ -44,12 +48,10 @@ export class FruitUserManageComponent implements OnInit {
 
   ngOnInit() {
     let group: any = {};
-
-
     // this.createUserFormGroup= 
     this.createNewUserFields.forEach(field => {
       console.log(field)
-      group[field.key] = new FormControl(field.value || '');
+      group[field.key] = new FormControl(field.value || '', field.validators);
       // filed.key
     });
     this.createUserFormGroup = new FormGroup(group);
@@ -70,16 +72,15 @@ export class FruitUserManageComponent implements OnInit {
     this.newFruiteSystemUser = { username: '', password: '', nickname: '' };
   }
   saveNewFruitUser() {
-    this.users.push({
-      username: this.newFruiteSystemUser.username,
-      nickname: this.newFruiteSystemUser.nickname,
-      password: this.newFruiteSystemUser.password
-    });
+    if (!this.createUserFormGroup.invalid) {
+      console.log(this.createUserFormGroup.value);
+      this.users.push(this.createUserFormGroup.value);
 
-    this.alerts.push({
-      type: 'success',
-      msg: `添加用户成功 ${new Date().toLocaleString()})`,
-      timeout: 3000
-    });
+      this.alerts.push({
+        type: 'success',
+        msg: `添加用户成功 ${new Date().toLocaleString()})`,
+        timeout: 3000
+      });
+    }
   }
 }
